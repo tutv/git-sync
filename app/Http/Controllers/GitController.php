@@ -48,15 +48,12 @@ class GitController extends Controller {
 			 * Execute git pull
 			 */
 			$str_shell_puller = $DIR_BASE_PULLER . $repo_name . '.sh';
-			echo $str_shell_puller;
 			shell_exec( $str_shell_puller );
 
 			/**
 			 * Log
 			 */
 			$path_log_txt = $DIR_BASE_LOG . $repo_name . '.txt';
-
-			echo $path_log_txt;
 
 			if ( $this->countLineTextFile( $path_log_txt ) > 1000 ) {
 				file_put_contents( $path_log_txt,
