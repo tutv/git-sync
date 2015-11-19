@@ -19,3 +19,5 @@ Route::any( 'push', [
 	'as'   => 'push',
 	'uses' => 'GitController@push'
 ] );
+
+Route::get( 'test', 'GitController@testShell' );
