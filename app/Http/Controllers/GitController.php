@@ -9,7 +9,7 @@ use App\Http\Requests;
 class GitController extends Controller {
 	public function push( Request $request ) {
 //		$DIR_BASE_REPO   = '/home/git.tutran.net/repos/';
-		$DIR_BASE_LOG    = '/home/git.tutran.net/log-github';
+		$DIR_BASE_LOG    = '/home/git.tutran.net/log-github/';
 		$DIR_BASE_PULLER = '/home/git.tutran.net/puller/';
 
 		error_reporting( E_ALL );
