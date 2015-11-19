@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 542_545454</div>
+                <div class="title">Laravel 542_5fsd45454</div>
             </div>
         </div>
     </body>
