@@ -40,7 +40,7 @@ class GitController extends Controller {
 				$reponse .= $text . PHP_EOL;
 			}
 
-			$reponse .= $repo_name;
+			$reponse .= $repo_name . 'ok men';
 
 			$reponse .= '---------------------------------------------------'
 			            . PHP_EOL;
