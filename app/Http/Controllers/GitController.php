@@ -8,13 +8,13 @@ use App\Http\Requests;
 
 class GitController extends Controller {
 	public function push( Request $request ) {
+//		$DIR_BASE_REPO   = '/home/git.tutran.net/repos/';
+		$DIR_BASE_LOG    = '/home/git.tutran.net/log-github';
+		$DIR_BASE_PULLER = '/home/git.tutran.net/puller/';
+
 		error_reporting( E_ALL );
 		ini_set( 'display_errors', '1' );
 		set_time_limit( 0 );
-		$path_log_txt     = '/home/f.tutran.me/github.txt';
-		$path_git_pull_sh = '/home/f.tutran.me/git-puller.sh';
-
-		$output = shell_exec( $path_git_pull_sh );
 
 		$server = $_SERVER;
 		if ( isset( $server['HTTP_X_GITHUB_EVENT'] )
@@ -44,6 +44,19 @@ class GitController extends Controller {
 
 			printf( $reponse );
 
+			$repo_name = $obj->repository->name;
+
+			/**
+			 * Execute git pull
+			 */
+			$str_shell_puller = $DIR_BASE_PULLER . $repo_name . '.sh';
+			$output           = shell_exec( $str_shell_puller );
+
+			/**
+			 * Log
+			 */
+			$path_log_txt = $DIR_BASE_LOG . $repo_name . '.txt';
+
 			if ( $this->countLineTextFile( $path_log_txt ) > 1000 ) {
 				file_put_contents( $path_log_txt, PHP_EOL . sprintf( $reponse ),
 					FILE_TEXT );
@@ -65,12 +78,5 @@ class GitController extends Controller {
 		fclose( $handle );
 
 		return $count;
-	}
-
-	public function testShell() {
-		$string
-			= shell_exec( 'cd /home/git.tutran.net/repos/fdownload && git pull' );
-		$output = shell_exec('ls -lart');
-		echo "<pre>$output</pre>";
 	}
 }
