@@ -8,7 +8,6 @@ use App\Http\Requests;
 
 class GitController extends Controller {
 	public function push( Request $request ) {
-//		$DIR_BASE_REPO   = '/home/git.tutran.net/repos/';
 		$DIR_BASE_LOG    = '/home/git.tutran.net/log-github/';
 		$DIR_BASE_PULLER = '/home/git.tutran.net/puller/';
 
@@ -23,7 +22,8 @@ class GitController extends Controller {
 			$content = file_get_contents( 'php://input' );
 			$obj     = json_decode( $content );
 
-			$repo_name         = $obj->repository->name;
+			$repo_name = $obj->repository->name;
+
 			$ref               = $obj->ref;
 			$request_timestamp = intval( $server['REQUEST_TIME'] );
 			$time              = date_create()
@@ -51,7 +51,7 @@ class GitController extends Controller {
 			 * Execute git pull
 			 */
 			$str_shell_puller = $DIR_BASE_PULLER . $repo_name . '.sh';
-			$output           = shell_exec( $str_shell_puller );
+			shell_exec( $str_shell_puller );
 
 			/**
 			 * Log
