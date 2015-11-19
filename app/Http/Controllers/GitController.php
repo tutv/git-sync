@@ -70,7 +70,7 @@ class GitController extends Controller {
 	public function testShell() {
 		$string
 			= shell_exec( 'cd /home/git.tutran.net/repos/fdownload && git pull' );
-
-		dd( $string );
+		$output = shell_exec('ls -lart');
+		echo "<pre>$output</pre>";
 	}
 }
