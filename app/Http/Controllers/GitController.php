@@ -23,6 +23,7 @@ class GitController extends Controller {
 			$content = file_get_contents( 'php://input' );
 			$obj     = json_decode( $content );
 
+			$repo_name         = $obj->repository->name;
 			$ref               = $obj->ref;
 			$request_timestamp = intval( $server['REQUEST_TIME'] );
 			$time              = date_create()
@@ -39,12 +40,12 @@ class GitController extends Controller {
 				$reponse .= $text . PHP_EOL;
 			}
 
+			$reponse .= $repo_name;
+
 			$reponse .= '---------------------------------------------------'
 			            . PHP_EOL;
 
 			printf( $reponse );
-
-			$repo_name = $obj->repository->name;
 
 			/**
 			 * Execute git pull
