@@ -82,4 +82,10 @@ class GitController extends Controller {
 
 		return $count;
 	}
+
+	public function testShell() {
+		$str = shell_exec( '/home/git.tutran.net/puller/git-sync.sh' );
+
+		print_r( $str );
+	}
 }
