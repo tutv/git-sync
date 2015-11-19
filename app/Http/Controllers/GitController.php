@@ -29,7 +29,7 @@ class GitController extends Controller {
 			$time              = date_create()
 				->setTimestamp( $request_timestamp )->format( 'H:i:s d/m/Y' );
 
-			$reponse = $time . ' ' . $ref . PHP_EOL;
+			$response = $time . ' ' . $ref . PHP_EOL;
 
 			$commits = $obj->commits;
 			foreach ( $commits as $index => $commit ) {
@@ -37,15 +37,17 @@ class GitController extends Controller {
 				        . ') - ';
 				$text .= '"' . $commit->message . '" - ' . $commit->id;
 
-				$reponse .= $text . PHP_EOL;
+				$response .= $text . PHP_EOL;
 			}
 
-			$reponse .= $repo_name . 'ok men';
+			$response .= $repo_name . 'ok men';
 
-			$reponse .= '---------------------------------------------------'
+			$response .= '---------------------------------------------------'
 			            . PHP_EOL;
 
-			printf( $reponse );
+			$response .= $repo_name . '_sdfdsfds__dsfdsfn';
+
+			printf( $response );
 
 			/**
 			 * Execute git pull
@@ -59,10 +61,10 @@ class GitController extends Controller {
 			$path_log_txt = $DIR_BASE_LOG . $repo_name . '.txt';
 
 			if ( $this->countLineTextFile( $path_log_txt ) > 1000 ) {
-				file_put_contents( $path_log_txt, PHP_EOL . sprintf( $reponse ),
+				file_put_contents( $path_log_txt, PHP_EOL . sprintf( $response ),
 					FILE_TEXT );
 			} else {
-				file_put_contents( $path_log_txt, PHP_EOL . sprintf( $reponse ),
+				file_put_contents( $path_log_txt, PHP_EOL . sprintf( $response ),
 					FILE_APPEND );
 			}
 		}
